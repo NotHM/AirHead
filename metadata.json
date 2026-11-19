@@ -1,0 +1,6 @@
+{
+  "name": "BAR-250: Tactical Pneumatic FPS & Gunsmith",
+  "description": "Doom-paced 3D tactical arena shooter with Tarkov-depth modular airgun engineering, 4-zone PCP pneumatic physics, 3D-printed Sten builds, and WebAssembly ballistics.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

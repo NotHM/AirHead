@@ -1,0 +1,32 @@
+name: bar250-pneumatic-cad-engineering-agent
+version: "2.5.0"
+description: >
+  Autonomous Multi-Skill Engineering Agent for BAR-250 Tactical Pneumatic Airguns.
+  Designs 3D-printable watertight CAD parts (.STL), re-bores Over-the-Barrel (OTB)
+  air containers to .30/.357/.45/.50 cal via Rust/Lamé hoop-stress physics, simulates
+  4-zone 250-350 bar thermodynamics (including Air Venturi Ascent Part 116 2,000 PSI
+  counter-pressure balancers and sacrificial burst disks), caches HuggingFace CFD/FEA
+  surrogates, and synthesizes the Master Bill of Materials (data/airgun_report.json).
+
+runtime:
+  engine: node-tsx-wasm
+  wasm_kernel: src/wasm/pneumatic_core.rs
+  cache_storage: data/hf_sim_cache.json
+  final_deliverable: data/airgun_report.json
+
+skills:
+  - name: air-pressure-thermodynamics
+    path: agent/skills/air-pressure-thermodynamics/SKILL.md
+    script: agent/skills/air-pressure-thermodynamics/scripts/solve_4zone_ballistics.ts
+  - name: rust-cad-reboring
+    path: agent/skills/rust-cad-reboring/SKILL.md
+    script: agent/skills/rust-cad-reboring/scripts/rebore_otb_barrel_cad.ts
+  - name: 3d-printing-stl-manifold
+    path: agent/skills/3d-printing-stl-manifold/SKILL.md
+    script: agent/skills/3d-printing-stl-manifold/scripts/synthesize_printable_stl.ts
+  - name: physics-model-surrogate
+    path: agent/skills/physics-model-surrogate/SKILL.md
+    script: agent/skills/physics-model-surrogate/scripts/run_hf_physics_cache.ts
+  - name: game-design-airgun-bom
+    path: agent/skills/game-design-airgun-bom/SKILL.md
+    script: agent/skills/game-design-airgun-bom/scripts/build_airgun_report.ts
